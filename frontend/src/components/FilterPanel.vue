@@ -140,7 +140,7 @@
         </div>
         <div v-show="expandedPanel" class="row">
           <div class="col d-flex flex-row-reverse">
-            <button class="btn btn-danger">Reset</button>
+            <button class="btn btn-danger" @click="resetFilters">Reset</button>
             <button class="btn btn-success me-3" @click="sendFormDataToParent">Submit</button>
           </div>
         </div>
@@ -218,7 +218,15 @@ export default {
         discoveryType: this.discoveryType,
         chemicalComposition: this.chemicalComposition,
       });
-    }
+    },
+    resetFilters() {
+      this.minMass = null;
+      this.maxMass = null;
+      this.country = null;
+      this.discoveryYear = null;
+      this.discoveryType = null;
+      this.chemicalComposition = null;
+    },
   },
 };
 </script>
