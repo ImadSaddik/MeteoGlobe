@@ -11,7 +11,7 @@ export default {
   name: 'GeoJsonGlobe',
   props: [
     'polygonsData', 'pointsData', 'polygonCapColor', 'polygonSideColor', 'polygonStrokeColor',
-    'pointAltitude', 'pointRadius', 'pointColor', 'globeImageUrl', 'cameraZPosition'
+    'pointAltitude', 'pointRadius', 'pointColor', 'globeImageUrl', 'cameraZPosition', 'cameraMinDistance'
   ],
   data () {
     return {
@@ -48,7 +48,7 @@ export default {
       camera.position.z = this.cameraZPosition;
 
       const tbControls = new TrackballControls(camera, renderer.domElement);
-      tbControls.minDistance = 101;
+      tbControls.minDistance = this.cameraMinDistance;
       tbControls.rotateSpeed = 1;
       tbControls.zoomSpeed = 0.5;
 

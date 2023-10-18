@@ -1,5 +1,6 @@
 <template>
   <GeoJsonGlobeVue
+    v-if="!loading"
     :globeImageUrl="'//unpkg.com/three-globe/example/img/earth-dark.jpg'"
     :polygonsData="countries"
     :pointsData="pointsData"
@@ -10,10 +11,12 @@
     :pointRadius="0.1"
     :pointColor="() => '#000'"
     :cameraZPosition="500"
+    :cameraMinDistance="120"
   />
 </template>
 
 <script>
+import axios from 'axios';
 import GeoJsonGlobeVue from '@/components/GeoJsonGlobe.vue';
 import countries from '../assets/datasets/countries.geojson';
 
@@ -22,18 +25,40 @@ export default {
   components: {
     GeoJsonGlobeVue,
   },
+  computed: {
+    pointsData() {
+      return this.pointsDataFull.map((point) => {
+        return {
+          lat: point.latitude,
+          lng: point.longitude,
+          name: point.name
+        }
+      })
+    }
+  },
   data () {
     return {
       countries: countries,
-      pointsData: [
-        { lat: 33.896933, lng: -5.530857 },
-        { lat: 33.895212, lng: -6.123823 }
-      ]
+      pointsDataFull: [],
+      loading: true,
     }
   },
   mounted () {
+    this.getData()
   },
   methods: {
+    async getData() {
+      await axios
+      .get('/api/v1/get_data/')
+      .then(response => {
+        console.log(response.data)
+        // this.pointsDataFull = response.data
+        this.loading = false
+      })
+      .catch(error => {
+        console.log(error)
+      })
+    }
   }
 }
 </script>
