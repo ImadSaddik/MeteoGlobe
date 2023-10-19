@@ -5,12 +5,12 @@
     :globeImageUrl="'//unpkg.com/three-globe/example/img/earth-dark.jpg'"
     :polygonsData="countries"
     :pointsData="pointsData"
-    :polygonCapColor="() => '#fff'"
+    :polygonCapColor="() => '#424242'"
     :polygonSideColor="() => '#000'"
     :polygonStrokeColor="() => '#111'"
     :pointAltitude="0.01"
-    :pointRadius="0.1"
-    :pointColor="() => '#000'"
+    :pointRadius="0.05"
+    :pointColor="() => '#EBB800'"
     :cameraZPosition="500"
     :cameraMinDistance="120"
   />
@@ -63,7 +63,7 @@ export default {
         })
         .then((response) => {
           console.log(response.data);
-          // this.pointsDataFull = response.data;
+          this.pointsDataFull = response.data;
           this.loading = false;
         })
         .catch((error) => {
