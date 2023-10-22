@@ -1,6 +1,6 @@
-<div style="text-align: center;">
+<p align="center">
   <img src="frontend/public/logo.svg" alt="MeteoGlobe Logo">
-</div>
+</p>
 
 MeteoGlobe is a web application built with Django and Vue.js that allows users to visualize meteorite data on a 3D globe. The application uses the three-globe to display a 3D globe and NASA's meteorites dataset to show meteorite landings on the Earth's surface. Users can apply various filters to explore meteorites based on their year of discovery, country of discovery, chemical composition, and more.
 
